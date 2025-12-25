@@ -46,35 +46,45 @@ export default function Home() {
             onChange={(e) => setJobDescription(e.target.value)}
           />
 
-          <label>Skills</label>
-          <input
-            placeholder="python, java, react"
-            value={skills}
-            onChange={(e) => setSkills(e.target.value)}
-          />
+         <label>Skills</label>
+<input
+  placeholder="python, java, react"
+  value={skills}
+  onChange={(e) => setSkills(e.target.value)}
+  required
+  name="skills"
+/>
 
-          <label>Location</label>
-          <input
-            placeholder="bangalore"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-          />
+<label>Location</label>
+<input
+  placeholder="bangalore"
+  value={location}
+  onChange={(e) => setLocation(e.target.value)}
+  required
+  name="location"
+/>
 
-          <label>Experience (years)</label>
-          <input
-            placeholder="3"
-            type="number"
-            value={experience}
-            onChange={(e) => setExperience(e.target.value)}
-          />
+<label>Experience (years)</label>
+<input
+  placeholder="3"
+  type="number"
+  value={experience}
+  onChange={(e) => setExperience(e.target.value)}
+  required
+  min="0"
+  name="experience"
+/>
 
-          <label>Salary (₹)</label>
-          <input
-            placeholder="800000"
-            type="number"
-            value={salary}
-            onChange={(e) => setSalary(e.target.value)}
-          />
+<label>Salary (₹)</label>
+<input
+  placeholder="800000"
+  type="number"
+  value={salary}
+  onChange={(e) => setSalary(e.target.value)}
+  required
+  min="0"
+  name="salary"
+/>
 
           <button className={styles.rankButton} onClick={handleRank}>
             Rank Candidates
