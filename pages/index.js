@@ -12,6 +12,12 @@ export default function Home() {
   const [candidates, setCandidates] = useState([]);
 
   const handleRank = async () => {
+    // SHOW POPUP IF ANY FIELD IS EMPTY
+    if (!jobDescription || !skills || !location || !experience || !salary) {
+      alert("⚠️ Please fill all required fields before ranking candidates!");
+      return;
+    }
+
     const payload = {
       jobDescription,
       inputSkills: skills.split(",").map(s => s.trim().toLowerCase()).filter(Boolean),
@@ -30,6 +36,15 @@ export default function Home() {
     setCandidates(data);
   };
 
+  const isFormValid =
+    jobDescription.trim() &&
+    skills.trim() &&
+    location.trim() &&
+    experience !== "" &&
+    salary !== "" &&
+    !isNaN(Number(experience)) &&
+    !isNaN(Number(salary));
+
   return (
     <div className={styles.page}>
       <Sidebar />
@@ -37,64 +52,64 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.title}>Candidate Filtering & Ranking System</h1>
 
-        {/* Input Form Card */}
         <div className={styles.formCard}>
-          <label>Job Description</label>
+          {/* ---- REQUIRED LABELS WITH RED STAR ---- */}
+          <label>Job Description <span style={{color:"red"}}>*</span></label>
           <textarea
             placeholder="Paste job description text here..."
             value={jobDescription}
             onChange={(e) => setJobDescription(e.target.value)}
+            required
           />
 
-         <label>Skills</label>
-<input
-  placeholder="python, java, react"
-  value={skills}
-  onChange={(e) => setSkills(e.target.value)}
-  required
-  name="skills"
-/>
+          <label>Skills (comma separated) <span style={{color:"red"}}>*</span></label>
+          <input
+            placeholder="python, java, react"
+            type="text"
+            value={skills}
+            onChange={(e) => setSkills(e.target.value)}
+            required
+          />
 
-<label>Location</label>
-<input
-  placeholder="bangalore"
-  value={location}
-  onChange={(e) => setLocation(e.target.value)}
-  required
-  name="location"
-/>
+          <label>Location <span style={{color:"red"}}>*</span></label>
+          <input
+            placeholder="bangalore"
+            type="text"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            required
+          />
 
-<label>Experience (years)</label>
-<input
-  placeholder="3"
-  type="number"
-  value={experience}
-  onChange={(e) => setExperience(e.target.value)}
-  required
-  min="0"
-  name="experience"
-/>
+          <label>Experience (years) <span style={{color:"red"}}>*</span></label>
+          <input
+            placeholder="3"
+            type="number"
+            min="0"
+            value={experience}
+            onChange={(e) => setExperience(e.target.value)}
+            required
+          />
 
-<label>Salary (₹)</label>
-<input
-  placeholder="800000"
-  type="number"
-  value={salary}
-  onChange={(e) => setSalary(e.target.value)}
-  required
-  min="0"
-  name="salary"
-/>
+          <label>Salary (₹) <span style={{color:"red"}}>*</span></label>
+          <input
+            placeholder="800000"
+            type="number"
+            min="0"
+            value={salary}
+            onChange={(e) => setSalary(e.target.value)}
+            required
+          />
 
-          <button className={styles.rankButton} onClick={handleRank}>
+          <button
+            className={styles.rankButton}
+            onClick={handleRank}
+            disabled={!isFormValid}
+          >
             Rank Candidates
           </button>
         </div>
 
-        {/* Results */}
-        {candidates.length > 0 && (
-          <CandidateTable candidates={candidates} />
-        )}
+        {candidates.length > 0 && <CandidateTable candidates={candidates} />}
       </main>
     </div>
   );
