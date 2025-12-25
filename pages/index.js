@@ -39,14 +39,14 @@ export default function Home() {
 
         {/* Input Form Card */}
         <div className={styles.formCard}>
-          <label>Job Description (Not Used)</label>
+          <label>Job Description</label>
           <textarea
             placeholder="Paste job description text here..."
             value={jobDescription}
             onChange={(e) => setJobDescription(e.target.value)}
           />
 
-          <label>Skills (comma separated)</label>
+          <label>Skills</label>
           <input
             placeholder="python, java, react"
             value={skills}
