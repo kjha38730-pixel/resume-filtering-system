@@ -1,0 +1,114 @@
+.page {
+  display: flex;
+  width: 100%;
+}
+
+.sidebar {
+  width: 220px;
+  background: var(--sidebar);
+  padding: 20px;
+  height: 100vh;
+  position: fixed;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.navItem {
+  display: block;
+  padding: 10px;
+  cursor: pointer;
+  margin-bottom: 6px;
+}
+
+.themeToggle {
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.main {
+  margin-left: 240px;
+  padding: 20px;
+  width: calc(100% - 240px);
+}
+
+.title {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.formCard {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+}
+
+.formCard input, .formCard textarea {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 8px;
+}
+
+.rankButton {
+  padding: 10px 16px;
+  background: royalblue;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.tableCard {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.userCell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar {
+  background: royalblue;
+  color: white;
+  border-radius: 50%;
+  padding: 8px;
+  width: 32px;
+  height: 32px;
+  font-size: 14px;
+  text-align: center;
+  line-height: 16px;
+}
+
+.viewBtn {
+  padding: 6px 14px;
+  background: #008cff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.detailRow {
+  background: var(--card);
+}
+
+.detailBox {
+  background: var(--card);
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}

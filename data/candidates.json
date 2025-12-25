@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Amit Sharma",
+    "skills": ["python", "django", "react"],
+    "experience": 3,
+    "salary": 800000,
+    "location": "bangalore"
+  },
+  {
+    "name": "Neha Verma",
+    "skills": ["java", "spring", "sql", "python"],
+    "experience": 5,
+    "salary": 1200000,
+    "location": "pune"
+  },
+  {
+    "name": "Rohit Singh",
+    "skills": ["c++", "python", "ml", "tensorflow"],
+    "experience": 2,
+    "salary": 600000,
+    "location": "delhi"
+  },
+  {
+    "name": "Sara Ali",
+    "skills": ["javascript", "react", "nodejs"],
+    "experience": 4,
+    "salary": 950000,
+    "location": "mumbai"
+  },
+  {
+    "name": "Karan Patel",
+    "skills": ["golang", "aws", "docker"],
+    "experience": 6,
+    "salary": 2000000,
+    "location": "bangalore"
+  },
+  {
+    "name": "Priya Nair",
+    "skills": ["html", "css", "javascript", "vue"],
+    "experience": 1,
+    "salary": 450000,
+    "location": "kochi"
+  },
+  {
+    "name": "John Matthew",
+    "skills": ["python", "flask", "sql", "aws"],
+    "experience": 3,
+    "salary": 900000,
+    "location": "bangalore"
+  },
+  {
+    "name": "Meera Kulkarni",
+    "skills": ["java", "microservices", "docker", "kubernetes"],
+    "experience": 7,
+    "salary": 2200000,
+    "location": "pune"
+  },
+  {
+    "name": "Rajesh Kumar",
+    "skills": ["c", "embedded", "c++"],
+    "experience": 4,
+    "salary": 750000,
+    "location": "hyderabad"
+  },
+  {
+    "name": "Alisha Fernandez",
+    "skills": ["python", "data analysis", "excel", "powerbi"],
+    "experience": 2,
+    "salary": 500000,
+    "location": "kolkata"
+  }
+]
