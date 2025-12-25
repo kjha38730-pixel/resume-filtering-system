@@ -112,3 +112,18 @@
   border-radius: 6px;
   border: 1px solid #ccc;
 }
+input:required:invalid,
+textarea:required:invalid {
+  border: 1px solid red;
+}
+.errorInput {
+  border: 1px solid red !important;
+  background: #ffecec;
+}
+
+.errorText {
+  margin: 4px 0 12px;
+  color: red;
+  font-size: 13px;
+}
+

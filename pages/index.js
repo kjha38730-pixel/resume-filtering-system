@@ -10,20 +10,28 @@ export default function Home() {
   const [experience, setExperience] = useState("");
   const [salary, setSalary] = useState("");
   const [candidates, setCandidates] = useState([]);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleRank = async () => {
-    // SHOW POPUP IF ANY FIELD IS EMPTY
-    if (!jobDescription || !skills || !location || !experience || !salary) {
-      alert("⚠️ Please fill all required fields before ranking candidates!");
-      return;
-    }
+    setSubmitted(true);
+
+    const isValid =
+      jobDescription.trim() &&
+      skills.trim() &&
+      location.trim() &&
+      experience !== "" &&
+      salary !== "" &&
+      !isNaN(Number(experience)) &&
+      !isNaN(Number(salary));
+
+    if (!isValid) return; // Stop submit
 
     const payload = {
       jobDescription,
       inputSkills: skills.split(",").map(s => s.trim().toLowerCase()).filter(Boolean),
       location: location.trim().toLowerCase(),
       experience: Number(experience),
-      salary: Number(salary)
+      salary: Number(salary),
     };
 
     const res = await fetch("/api/rankCandidates", {
@@ -36,75 +44,82 @@ export default function Home() {
     setCandidates(data);
   };
 
-  const isFormValid =
-    jobDescription.trim() &&
-    skills.trim() &&
-    location.trim() &&
-    experience !== "" &&
-    salary !== "" &&
-    !isNaN(Number(experience)) &&
-    !isNaN(Number(salary));
-
   return (
     <div className={styles.page}>
       <Sidebar />
-
       <main className={styles.main}>
         <h1 className={styles.title}>Candidate Filtering & Ranking System</h1>
 
         <div className={styles.formCard}>
-          {/* ---- REQUIRED LABELS WITH RED STAR ---- */}
-          <label>Job Description <span style={{color:"red"}}>*</span></label>
+
+          {/* ---- Job Description ---- */}
+          <label>Job Description <span style={{ color: "red" }}>*</span></label>
           <textarea
             placeholder="Paste job description text here..."
             value={jobDescription}
             onChange={(e) => setJobDescription(e.target.value)}
-            required
+            className={submitted && !jobDescription ? styles.errorInput : ""}
           />
+          {submitted && !jobDescription && (
+            <p className={styles.errorText}>⚠ Job description is required</p>
+          )}
 
-          <label>Skills (comma separated) <span style={{color:"red"}}>*</span></label>
+          {/* ---- Skills ---- */}
+          <label>Skills (comma separated) <span style={{ color: "red" }}>*</span></label>
           <input
             placeholder="python, java, react"
             type="text"
             value={skills}
             onChange={(e) => setSkills(e.target.value)}
-            required
+            className={submitted && !skills ? styles.errorInput : ""}
           />
+          {submitted && !skills && (
+            <p className={styles.errorText}>⚠ Skills are required</p>
+          )}
 
-          <label>Location <span style={{color:"red"}}>*</span></label>
+          {/* ---- Location ---- */}
+          <label>Location <span style={{ color: "red" }}>*</span></label>
           <input
             placeholder="bangalore"
             type="text"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            required
+            className={submitted && !location ? styles.errorInput : ""}
           />
+          {submitted && !location && (
+            <p className={styles.errorText}>⚠ Location is required</p>
+          )}
 
-          <label>Experience (years) <span style={{color:"red"}}>*</span></label>
+          {/* ---- Experience ---- */}
+          <label>Experience (years) <span style={{ color: "red" }}>*</span></label>
           <input
             placeholder="3"
             type="number"
             min="0"
             value={experience}
             onChange={(e) => setExperience(e.target.value)}
-            required
+            className={submitted && (experience === "" || isNaN(Number(experience))) ? styles.errorInput : ""}
           />
+          {submitted && (experience === "" || isNaN(Number(experience))) && (
+            <p className={styles.errorText}>⚠ Enter a valid experience number</p>
+          )}
 
-          <label>Salary (₹) <span style={{color:"red"}}>*</span></label>
+          {/* ---- Salary ---- */}
+          <label>Salary (₹) <span style={{ color: "red" }}>*</span></label>
           <input
             placeholder="800000"
             type="number"
             min="0"
             value={salary}
             onChange={(e) => setSalary(e.target.value)}
-            required
+            className={submitted && (salary === "" || isNaN(Number(salary))) ? styles.errorInput : ""}
           />
+          {submitted && (salary === "" || isNaN(Number(salary))) && (
+            <p className={styles.errorText}>⚠ Enter a valid salary amount</p>
+          )}
 
-          <button
-            className={styles.rankButton}
-            onClick={handleRank}
-            disabled={!isFormValid}
-          >
+          {/* ---- Submit Button ---- */}
+          <button className={styles.rankButton} onClick={handleRank}>
             Rank Candidates
           </button>
         </div>
